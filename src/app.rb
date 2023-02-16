@@ -1,7 +1,19 @@
 require_relative "view/ruby2d"
 require_relative "model/state"
 
-view = View::Ruby2dView.new
+class App
+  def start
+    view = View::Ruby2dView.new
+    initial_state = Model::initialize_state
 
-initial_state = Model::initialize_state
-view.render(initial_state)
+    view.render(initial_state)
+  end
+
+  def init_timer
+    loop do
+      sleep 0.5
+      # Trigger movements
+    end
+
+  end
+end

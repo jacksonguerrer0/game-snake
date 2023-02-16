@@ -42,10 +42,11 @@ module View
       extend Ruby2D::DSL
 
       food = state.food
+      radius_circle = @pixel_size / 2
 
       Circle.new(
-        x: @pixel_size * food.col, y: @pixel_size * food.row,
-        radius: @pixel_size / 2,
+        x: (@pixel_size * food.col) + radius_circle, y: (@pixel_size * food.row) + radius_circle,
+        radius: radius_circle,
         color: 'yellow',
       )
     end
