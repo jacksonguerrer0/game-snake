@@ -9,4 +9,11 @@ This is a simple game snake created with ruby
 
 # How run?
 
-Executre `bundler exec ruby src/app.rb`
+Execute `bundler exec ruby src/app.rb`
+
+# Run test
+
+Execute `bundler exec ruby test/actions_test.rb`
+
+# Game
+
