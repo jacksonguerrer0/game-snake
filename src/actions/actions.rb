@@ -93,6 +93,8 @@ module Actions
   def self.end_game(state)
     state.game_finished = true
 
+    puts "Game finished"
+    puts "Score: #{state.snake.positions.length}"
     state
   end
 end

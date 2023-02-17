@@ -6,6 +6,7 @@ class App
   def initialize
     @state = Model::initialize_state
     @view = View::Ruby2dView.new(self)
+    @speed = 0.5
   end
 
   def start
@@ -15,9 +16,12 @@ class App
 
   def init_timer(view)
     loop do
+      break if @state.game_finished
+      calculate_speed
+
       @state = Actions::move_snake(@state)
       view.render_objects(@state)
-      sleep 0.5
+      sleep @speed
     end
 
   end
@@ -28,6 +32,16 @@ class App
     if new_state.hash != @state
       @state = new_state
       @view.render_objects(@state)
+    end
+  end
+
+  private
+
+  def calculate_speed
+    if @speed >= 0.001
+      @speed -= (@speed * 0.001)
+    else
+      @speed = 0.001
     end
   end
 end
