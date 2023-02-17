@@ -17,3 +17,4 @@ Execute `bundler exec ruby test/actions_test.rb`
 
 # Game
 
+<img width="832" alt="Captura de pantalla 2023-02-17 a la(s) 5 41 32 p m" src="https://user-images.githubusercontent.com/83600299/219811391-1ce0979a-9186-4114-b96e-baeab07ecb3c.png">
