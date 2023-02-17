@@ -2,8 +2,9 @@ require "ruby2d"
 
 module View
   class Ruby2dView
-    def initialize
+    def initialize(app)
       @pixel_size = 25
+      @app = app
     end
 
     def start(state)
@@ -15,6 +16,10 @@ module View
         width: @pixel_size * grid.cols,
         height: @pixel_size * grid.cols
       )
+
+      on :key_down do |event|
+        handle_key_event(state,event)
+      end
 
       show
     end
@@ -38,6 +43,7 @@ module View
           x: @pixel_size * position.col, y: @pixel_size * position.row,
           size: @pixel_size,
           color: 'green',
+          z: 10
         )
       end
     end
@@ -53,6 +59,23 @@ module View
         radius: radius_circle,
         color: 'yellow',
       )
+    end
+
+    def handle_key_event(state, event)
+      case event.key
+      when 'up'
+        @app.send_action(:change_direction, Model::Direction::UP)
+        # Actions::change_direction(state, Model::Direction::UP)
+      when 'down'
+        @app.send_action(:change_direction, Model::Direction::DOWN)
+        # Actions::change_direction(state, Model::Direction::DOWN)
+      when 'left'
+        @app.send_action(:change_direction, Model::Direction::LEFT)
+        # Actions::change_direction(state, Model::Direction::LEFT)
+      when 'right'
+        @app.send_action(:change_direction, Model::Direction::RIGHT)
+        # Actions::change_direction(state, Model::Direction::RIGHT)
+      end
     end
   end
 end

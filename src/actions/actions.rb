@@ -2,7 +2,9 @@ module Actions
   def self.move_snake(state)
     next_position = calc_next_position(state)
 
-    if position_is_valid?(state, next_position)
+    if position_is_food?(state, next_position)
+      grow_snake_to(state, next_position)
+    elsif position_is_valid?(state, next_position)
       move_snake_to(state, next_position)
     else
       end_game(state)
@@ -19,8 +21,19 @@ module Actions
     state
   end
 
-
   private
+
+  def self.position_is_food?(state, next_position)
+    state.food.row == next_position.row && state.food.col == next_position.col
+  end
+
+  def self.grow_snake_to(state, next_position)
+    new_positions = [next_position] + state.snake.positions
+    state.snake.positions = new_positions
+
+    state
+  end
+
   def self.calc_next_position(state)
     current_position = state.snake.positions.first
 
