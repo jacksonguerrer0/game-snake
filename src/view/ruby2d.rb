@@ -6,9 +6,8 @@ module View
       @pixel_size = 25
     end
 
-    def render(state)
+    def start(state)
       extend Ruby2D::DSL
-
       grid = state.grid
 
       set(
@@ -17,10 +16,15 @@ module View
         height: @pixel_size * grid.cols
       )
 
+      show
+    end
+
+    def render_objects(state)
+      extend Ruby2D::DSL
+
+      clear
       render_snake(state)
       render_food(state)
-
-      show
     end
 
     private
